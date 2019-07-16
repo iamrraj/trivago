@@ -9,12 +9,12 @@ export default class Service{
     }
 
     getInfoByLink(link){
-        const url = `http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json${link}`;
+        const url = `http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json/${link}`;
         return axios.get(url).then(response => response.data);
     }
 
-    getInfo(pk){
-        const url = `http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json${pk}`;
+    getInfo(id){
+        const url = `http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json/${id}`;
         return axios.get(url).then(response => response.data);
     }
 }

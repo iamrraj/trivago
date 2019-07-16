@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import Service from './Service';
+// import Service from './Service';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
-import { Row ,Container,Col,Media} from 'react-bootstrap'
+// import {Link} from 'react-router-dom'
+import { Row ,Container,Col,Card,Button,ListGroup} from 'react-bootstrap'
 
-const service = new Service();
+// const service = new Service();
 
 class Home extends Component {
     constructor(props){
@@ -33,7 +33,7 @@ class Home extends Component {
           })
           
       }
-    
+  
     render() {
         return (
             
@@ -58,18 +58,23 @@ class Home extends Component {
       
       <Row>
  {this.state.info.map( c => 
-        <Col sm={3} key={c.id}>
-          <Media className="card" >
+      <Col sm={4} key={c.id} >
+          
           {/* <Link to={"/project/" + c.pk} > */}
-          <Link to={"/"} key={c.pk} >
-            <img className="card-img-top image" src={c.thumbnail_url}  alt={c.card_title} style={{ height: "370px"}} />
-            <div className="middle">
-              <p className="p" style={{marginBottom: "80px",color:"green"}}>{c.title}</p>
-              <p className="p">LOlo</p>
-              <p className="p" style={{marginTop: "80px", color:"blue"}}><i className="fa fa-star-o" style={{ color: "palegreen" }}></i> {c.excerpt} </p>
-            </div></Link>
-          </Media>
-        </Col>
+          <Card >
+     
+            <Card.Img variant="top" src={c.thumbnail_url} />
+            <Card.Body>
+              <Card.Title>{c.title}</Card.Title>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>{c.excerpt}</ListGroup.Item>
+                </ListGroup>
+                <Card.Title style={{ float:"right", fontSize: "15px" }}>{c.date}</Card.Title><br></br>
+                <a href={"/details/" + c.title} >    <Button variant="info">See Details >> </Button></a> 
+              </Card.Body>
+         
+        </Card>
+      </Col>
 
  )} 
         </Row>
