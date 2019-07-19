@@ -4,9 +4,6 @@ import './Details.css';
 import { Row ,Container,Col, Carousel,Card} from 'react-bootstrap'
 const ReactMarkdown = require('react-markdown/with-html')
 
-// import Service from './Service';
-
-// const service = new Service();
 
 class Details extends Component {
     constructor(props){
@@ -16,28 +13,6 @@ class Details extends Component {
             question: null,
           };
     }
-
-    // async componentDidMount() {
-    //     const { match: { params } } = this.props;
-    //     const question = (await axios.get(params.uri)).data;
-    //     console.log(question)
-    //     this.setState({
-    //         question
-    //     });
-    //  }
-
-
-
-    // componentDidMount() {
-    //     // const { match: { params } } = this.props; 
-    //     axios.get(this.props.uri)
-    //       .then(res => {
-    //         const info = res.data;
-    //         console.log(info);
-    //         this.setState({ info });
-    //       })
-          
-    //   }
 
   
 
@@ -358,11 +333,11 @@ class Details extends Component {
                           <Card.Subtitle>
                             <p>
                               <i className="fa fa-product-hunt"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[0].tag_name}&nbsp; &nbsp;&nbsp; &nbsp; 
-                              <i className="fa fa-product-hunt"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[1].tag_name}
+                              <i className="fa fa-resturanet"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[1].tag_name}
                               </p>
 
                           
-                              <p><i className="fa fa-wifi"></i> {question.content[13].table_of_contents[10].hotel_module.tags[2].tag_name}&nbsp; &nbsp;&nbsp; &nbsp; 
+                              <p><i className="fa fa-hotel"></i> {question.content[13].table_of_contents[10].hotel_module.tags[2].tag_name}&nbsp; &nbsp;&nbsp; &nbsp; 
                               <i className="fa fa-wifi"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[3].tag_name}</p>
  
                             
