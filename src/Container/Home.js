@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-// import Service from './Service';
 import axios from 'axios';
-// import {Link} from 'react-router-dom'
-import { Row ,Container,Col,Card,Button,ListGroup} from 'react-bootstrap'
+import { Row ,Container,Col,Card,Button,ListGroup,Carousel} from 'react-bootstrap'
 
-// const service = new Service();
+
 
 class Home extends Component {
     constructor(props){
@@ -16,13 +14,6 @@ class Home extends Component {
         };
     }
 
-    // componentDidMount(){
-    //     var self = this;
-    //     service.getInfos().then( (result) =>{
-    //         console.log(result);
-    //         self.setState({ data: {info:[]} })
-    //     });
-    // }
 
     componentDidMount() {
         axios.get(`http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json`)
@@ -36,26 +27,16 @@ class Home extends Component {
   
     render() {
         return (
-            
-
+ <div>         
+          <Carousel >
+          <Carousel.Item>
+          <img className="img-fluid rounded mb-4" src="https://cdn-image.travelandleisure.com/sites/default/files/1556556186/bora-bora-overwater-bungalows-ALISTBUCKET0419.jpg"  alt ="Just Image " style={{height:"600px", width:"100%"}} />
+            <Carousel.Caption>
+            <p style={{ opacity:"1", textTransform:"capitalize",fontSize:"30px", fontWeight:"bolder"}}>Dornoch Castle: A Whisky Tasting at One of the World's Most Popular Hotel Bars</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          </Carousel>
 <Container>
-
-<h1 className="mt-4 mb-3 text-white">Movie
-      <small>List</small>
-    </h1>
-
-    <ol className="breadcrumb">
-      <li className="breadcrumb-item">
-        <a href="/">Home</a>
-      </li>
-      <li className="breadcrumb-item active">Project</li>
-    </ol>
-    <img className="img-fluid rounded mb-4" src="http://placehold.it/1200x400" alt="">
-    </img><hr className="hr"/>
-
-
-  
-      
       <Row>
  {this.state.info.map( c => 
       <Col sm={4} key={c.id} >
@@ -70,7 +51,7 @@ class Home extends Component {
                   <ListGroup.Item>{c.excerpt}</ListGroup.Item>
                 </ListGroup>
                 <Card.Title style={{ float:"right", fontSize: "15px" }}>{c.date}</Card.Title><br></br>
-                <a href={"/details/" + c.title} >    <Button variant="info">See Details >> </Button></a> 
+                <a href={ c.slug} >    <Button variant="info">See Details >> </Button></a> 
               </Card.Body>
          
         </Card>
@@ -78,19 +59,8 @@ class Home extends Component {
 
  )} 
         </Row>
-
-
-          
-                            {/* // <td>
-                // <button className="btn btn-danger"  onClick={(e)=> this.handleDelete(e,c.pk) }><i className="fa fa-trash" alt="Delete"></i></button> |
-                // <a className="btn btn-success" href={"/customer/" + c.pk}><i className="fa fa-pencil"></i></a> 
-                // </td> */}  
-{/*  
-      <hr className="hr"></hr>
-      <center>
-      <Button variant="primary" className="text-left" onClick= { this.nextPage }>Next</Button></center> */}
       </Container> 
-      
+      </div>  
 
 
        
@@ -98,4 +68,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default Home;

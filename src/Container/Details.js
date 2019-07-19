@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import './Details.css';
-import { Row ,Container,Col} from 'react-bootstrap'
+import { Row ,Container,Col, Carousel,Card} from 'react-bootstrap'
 const ReactMarkdown = require('react-markdown/with-html')
 
 // import Service from './Service';
@@ -65,7 +65,7 @@ class Details extends Component {
       
   }
    
-   
+  
 
     render() {
         const {question} = this.state;
@@ -76,7 +76,7 @@ class Details extends Component {
                  <div>
                    
                    
-                      <img className="img-fluid rounded mb-4" src={question.thumbnail_url} alt="" style={{ height: "550px", width: "100%"}} />
+                      <img className="img-fluid rounded mb-4" src={question.thumbnail.url} alt="" style={{ height: "550px", width: "100%"}} />
                  </div>
             <Container>
                 <Row >
@@ -86,13 +86,12 @@ class Details extends Component {
                   <span style={{float:"right"}}>{question.date}</span>
                   </h4>
                   <br></br>
-                    <h1>{question.card_title}</h1><br></br>
-                    <h2 style={{ opacity: "0.4"}}>{question.title}</h2>
-                    <h6>{question.excerpt}</h6>
+                    <h1>{question.title}</h1><br></br>
+                    <h3 style={{ opacity: "0.4"}}>{question.excerpt}</h3>
+                     
 <br></br>
 {/* This is For array 0 */}
 
-                    <h2 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[0].type}</h2>
                     <h5 style={{ fontFamily:"Arial, Helvetica, sans-serif"}}><ReactMarkdown  source = { question.content[0].text } escapeHtml={false}  /></h5>
 {/* This is For array 1 */}
                     <h2 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[1].type}</h2>
@@ -100,7 +99,7 @@ class Details extends Component {
 
 {/* This is For array 2 */}
                     <h2 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[2].type}</h2>
-                    <h5 style={{ fontFamily:"Arial, Helvetica, sans-serif", }}><ReactMarkdown  source = { question.content[2].content } escapeHtml={false}  /></h5>
+                    <h5 style={{ fontFamily:"Arial, Helvetica, sans-serif" }} ><ReactMarkdown  source = { question.content[2].content } escapeHtml={false}  /></h5>
 
 
 {/* This is For array 3 */}
@@ -112,32 +111,58 @@ class Details extends Component {
                     <h4 style={{ opacity:"0.6", textTransform:"capitalize"}}>{question.content[3].blocks[0].tips[0].title}</h4>
                     <h5 style={{ fontFamily:"Arial, Helvetica, sans-serif", }}><ReactMarkdown  source = { question.content[3].blocks[0].tips[0].description } escapeHtml={false}  /></h5>
 
-{/* This is block post 1 */}
-                    <h2 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[3].blocks[1].title}</h2>
-                    <h4 style={{ opacity:"0.6", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[0].title}</h4>
-                    <h6 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[0].date}
-                    <span style={{ textDecoration:"underline", textTransform:"capitalize", float:"right"}}>{question.content[3].blocks[1].posts[0].taxonomies.destinations[0].name}</span>
-                    </h6>
-                    <img className="img-fluid rounded mb-4" src={question.content[3].blocks[1].posts[0].thumbnail_url} alt=""  />
-                    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[0].card_title}</p>
 
-{/* THis is blocks Post 2 */}
-                   
-                    <h4 style={{ opacity:"0.6", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[1].title}</h4>
-                    <h6 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[1].date}
-                    <span style={{ textDecoration:"underline", textTransform:"capitalize", float:"right"}}>{question.content[3].blocks[1].posts[1].taxonomies.destinations[0].name}</span>
-                    </h6>
-                    <img className="img-fluid rounded mb-4" src={question.content[3].blocks[1].posts[1].thumbnail_url} alt=""  />
-                    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[1].card_title}</p>
 
-{/* THis is blocks Post 3 */}
-                   
-                    <h4 style={{ opacity:"0.6", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[2].title}</h4>
-                    <h6 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[2].date}
-                    <span style={{ textDecoration:"underline", textTransform:"capitalize", float:"right"}}>{question.content[3].blocks[1].posts[2].taxonomies.destinations[0].name}</span>
-                    </h6>
-                    <img className="img-fluid rounded mb-4" src={question.content[3].blocks[1].posts[2].thumbnail_url} alt=""  />
-                    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[3].blocks[1].posts[2].card_title}</p>
+                    <Carousel bg="info">
+                      <Carousel.Item>
+                    <a href="# " target="_blank" style={{ textDecoration: "none", color:"black" }}>
+                      <center>
+                      <Card  >
+                      <img className="img-fluid rounded mb-4" src={question.content[3].blocks[1].posts[0].thumbnail_url} alt={question.content[3].blocks[1].posts[0].alt} 
+                      style={{ height: "400px", width:"100%"}}
+                      />
+                        <Card.Body>
+                         <Card.Title>{question.content[3].blocks[1].posts[0].taxonomies.destinations[0].name}</Card.Title>
+                          <Card.Text style={{ fontSize: "30px"}}>
+                         {question.content[3].blocks[1].posts[0].card_title}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card></center></a>
+                      </Carousel.Item>
+
+                      <Carousel.Item>
+                      <a href="# " target="_blank" style={{ textDecoration: "none", color:"black" }}>
+                     <center>
+                      <Card >
+                      <img className="img-fluid rounded mb-4" src={question.content[3].blocks[1].posts[1].thumbnail_url} alt={question.content[3].blocks[1].posts[1].alt}
+                      style={{ height: "400px", width: "100%"}}
+                      />
+                        <Card.Body>
+                          <Card.Title>{question.content[3].blocks[1].posts[1].taxonomies.destinations[0].name}</Card.Title>
+                          <Card.Text style={{ fontSize: "30px"}}>
+                          {question.content[3].blocks[1].posts[1].card_title}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card></center></a>
+                      </Carousel.Item>
+
+                      
+                     <Carousel.Item>
+                     <a href="# " target="_blank" style={{ textDecoration: "none", color:"black" }}>
+                     <center>
+                      <Card >
+                        <img className="img-fluid rounded mb-4" src={question.content[3].blocks[1].posts[2].thumbnail_url} alt={question.content[3].blocks[1].posts[2].alt} 
+                        style={{ height: "400px", width:"100%"}}
+                         />
+                        <Card.Body>
+                          <Card.Title>{question.content[3].blocks[1].posts[2].taxonomies.destinations[0].name}</Card.Title>
+                          <Card.Text style={{ fontSize: "30px"}}>
+                          {question.content[3].blocks[1].posts[2].card_title}
+                          </Card.Text>
+                        </Card.Body>
+                      </Card></center></a>
+                      </Carousel.Item>
+                    </Carousel>
 
 
                    
@@ -236,26 +261,68 @@ class Details extends Component {
 
 {/* This is array 12 */}
 
-                    <h2 style={{ textDecoration:"underline", textTransform:"capitalize"}}>{question.content[12].title}</h2>
-                    <h5 style={{ fontFamily:"Arial, Helvetica, sans-serif", }}><ReactMarkdown  source = { question.content[12].text } escapeHtml={false}  /></h5>
+                    <h2 style={{ textDecoration:"underline", textTransform:"capitalize"}} id="hotel" >{question.content[12].title}</h2>
 
-                    <h5><ReactMarkdown  source = { question.content[12].blocks[0].text } escapeHtml={false}  /></h5>
-
-
-                    <h5><ReactMarkdown  source = { question.content[12].gallery[0].courtesy } escapeHtml={false}  /></h5>
-                    <img className="img-fluid rounded mb-4" src={question.content[12].gallery[0].url} alt ={question.content[12].gallery[0].alt}  height={question.content[12].gallery[0].height} width={question.content[12].gallery[0].width} />
-                    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[12].gallery[0].title}</p>
-
-
-                    <h5><ReactMarkdown  source = { question.content[12].gallery[1].courtesy } escapeHtml={false}  /></h5>
-                    <img className="img-fluid rounded mb-4" src={question.content[12].gallery[1].url} alt ={question.content[12].gallery[1].alt}  height={question.content[12].gallery[1].height} width={question.content[12].gallery[1].width} />
-                    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[12].gallery[0].title}</p>
  
-                    <h5><ReactMarkdown  source = { question.content[12].gallery[2].courtesy } escapeHtml={false}  /></h5>
-                    <img className="img-fluid rounded mb-4" src={question.content[12].gallery[2].url} alt ={question.content[12].gallery[2].alt}  height={question.content[12].gallery[2].height} width={question.content[12].gallery[2].width}  />
-                    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[12].gallery[2].title}</p>
+
+{/* 
+ This si for Array 14
+                  <h5><ReactMarkdown  source = { question.content[14].text } escapeHtml={false}  /></h5> */}
+
+
+
+
+   <Carousel >
+  <Carousel.Item>
+  <img className="img-fluid rounded mb-4" src={question.content[12].gallery[0].url} alt ={question.content[12].gallery[0].alt}  height={question.content[12].gallery[0].height} width={question.content[12].gallery[0].width} />
+    <Carousel.Caption>
+    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[12].gallery[0].title}</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+  <img className="img-fluid rounded mb-4" src={question.content[12].gallery[1].url} alt ={question.content[12].gallery[1].alt}  height={question.content[12].gallery[1].height} width={question.content[12].gallery[1].width} />
+
+    <Carousel.Caption>
+    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[12].gallery[0].title}</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  <Carousel.Item>
+  <img className="img-fluid rounded mb-4" src={question.content[12].gallery[2].url} alt ={question.content[12].gallery[2].alt}  height={question.content[12].gallery[2].height} width={question.content[12].gallery[2].width}  />
+    <Carousel.Caption>
+    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[12].gallery[2].title}</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+
+  <Carousel.Item>
+  <img className="img-fluid rounded mb-4" src={question.content[15].courtesy_list_contents[0].url} alt ={question.content[15].courtesy_list_contents[0].alt}  height={question.content[15].courtesy_list_contents[0].height} width={question.content[15].courtesy_list_contents[0].width}  />
+    <Carousel.Caption>
+    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[15].courtesy_list_contents[0].title}</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+
+
+  <Carousel.Item>
+  <img className="img-fluid rounded mb-4" src={question.content[15].courtesy_list_contents[2].url} alt ={question.content[15].courtesy_list_contents[2].alt}  height={question.content[15].courtesy_list_contents[2].height} width={question.content[15].courtesy_list_contents[2].width}  />
+    <Carousel.Caption>
+    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[15].courtesy_list_contents[2].title}</p>
+    </Carousel.Caption>
+  </Carousel.Item>
  
-                  </Col>
+  <Carousel.Item>
+  <img className="img-fluid rounded mb-4" src={question.content[15].courtesy_list_contents[3].url} alt ={question.content[15].courtesy_list_contents[3].alt}  height={question.content[15].courtesy_list_contents[3].height} width={question.content[15].courtesy_list_contents[3].width}  />
+    <Carousel.Caption>
+    <p style={{ opacity:"1", textTransform:"capitalize"}}>{question.content[15].courtesy_list_contents[3].title}</p>
+    </Carousel.Caption>
+  </Carousel.Item>
+  
+</Carousel>
+
+<h5><ReactMarkdown  source = { question.content[12].blocks[0].text } escapeHtml={false}  /></h5>
+
+
+
+
+                 </Col>
 
 
                   <Col sm={3}>
@@ -263,15 +330,52 @@ class Details extends Component {
                    
                        <img className="img-fluid rounded mb-4" src={question.author.image} alt="" style={{ height:"50px", width:"50px", borderRadius:"50px"}} />
                    
-                       <span>{question.author.name}</span>
+                       <span>{question.author.name}</span><br></br>
+                       
                        <div>
-                          <a href={question.author.social_networks.facebook} target="_blank" className=" fa fa-facebook"></a>
+                         <a href={question.author.social_networks.facebook} target="_blank" className=" fa fa-facebook"></a>
                           <a href={question.author.social_networks.instagram } target="_blank" className="fa fa-instagram"></a>
                           <a href={question.author.social_networks.pinterest} target="_blank" className="fa fa-pinterest"></a>
                           <a href={question.author.social_networks.twitter} target="_blank" className="fa fa-twitter"></a>
-                       </div>
+                       </div><br></br>
+
+                       <p>Skip to the Hotel </p>
+                       <a href="#hotel">1. Hotel { question.content[13].table_of_contents[10].hotel_module.name }3 <i className="fa fa-star" style={{ color:"gold"}}></i> </a>
+
+                       <Card style= {{ width:"23rem",top: "93%" }}>
+                        <Card.Body>
+                          <Card.Title>Hotel { question.content[13].table_of_contents[10].hotel_module.name } </Card.Title>
+                          <br></br>
+                          <Card.Subtitle className="mb-2 text-muted">
+                            <span style={{ background:"green", color:"white", padding:"7px" }}>8.9</span> &nbsp; &nbsp;
+                            <span>{ question.content[13].table_of_contents[10].hotel_module.ratingText }({ question.content[13].table_of_contents[10].hotel_module.ratingCount})</span>
+                            </Card.Subtitle>
+                            <br></br>
+                          <Card.Subtitle>
+                            { question.content[13].table_of_contents[10].hotel_module.rating_aspects.aspect_text } {question.content[13].table_of_contents[10].hotel_module.rating_aspects.aspect_name}&nbsp;&nbsp; {question.content[13].table_of_contents[10].hotel_module.rating_aspects.aspect_rating_percentage}/100
+                          </Card.Subtitle>
+<br></br>
+                          <Card.Subtitle>
+                            <p>
+                              <i className="fa fa-product-hunt"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[0].tag_name}&nbsp; &nbsp;&nbsp; &nbsp; 
+                              <i className="fa fa-product-hunt"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[1].tag_name}
+                              </p>
+
+                          
+                              <p><i className="fa fa-wifi"></i> {question.content[13].table_of_contents[10].hotel_module.tags[2].tag_name}&nbsp; &nbsp;&nbsp; &nbsp; 
+                              <i className="fa fa-wifi"></i>  {question.content[13].table_of_contents[10].hotel_module.tags[3].tag_name}</p>
+ 
+                            
+                          
+                          </Card.Subtitle>
+                          <Card.Link href={question.content[13].table_of_contents[10].hotel_module.homePageURL} target="_blank" style={{ background:"green", padding:"10px", color:"white"}}>View Price<i className="fa fa-arrow-right"></i> </Card.Link>
+                        </Card.Body>
+                      </Card>
                     
                   </Col>
+
+
+
 
                 </Row>
             </Container>
