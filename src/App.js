@@ -11,16 +11,13 @@ const BaseLayout = () => (
 
 <div>
 <Navbar bg="info" expand="lg">
-  <Navbar.Brand href="/">Trivago Magazine</Navbar.Brand>
+  <Navbar.Brand href="#"> <img src="https://raw.githubusercontent.com/jinfull/trivago-magazine/master/src/assets/hamburger.png" alt="side" style={{ height:"20px"}}></img> </Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mx-auto">
-      <Nav.Link href="/">Home</Nav.Link>
+      <Nav.Link href="/"><img src="https://raw.githubusercontent.com/jinfull/trivago-magazine/master/src/assets/trivago-logo.png" alt="trivago" style={{ height:"60px", width:"150px"}}></img></Nav.Link>
     </Nav>
-    <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-danger">Search</Button>
-    </Form>
+    
   </Navbar.Collapse>
 </Navbar>
 
@@ -29,7 +26,7 @@ const BaseLayout = () => (
         
             <Switch>
 
-              <Route path="/" exact component={Home} />
+             <Route path="/" exact component={Home} />
               <Route  path='/:slug' component={Details} />
               {/* <Route path="/LoginView" component={LoginView} /> */}
              
