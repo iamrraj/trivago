@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import { Row ,Container,Col,Card,Button,ListGroup,Carousel} from 'react-bootstrap'
 
 
@@ -9,34 +9,34 @@ class Home extends Component {
         super(props);
 
         this.state ={
-          movies: [],
+          info: [],
 
         };
     }
 
 
-    // componentDidMount() {
-    //     axios.get(`http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json`)
-    //       .then(res => {
-    //         const info = res.data;
-    //         console.log(res);
-    //         this.setState({ info });
-    //       })
+    componentDidMount() {
+        axios.get(`http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json`)
+          .then(res => {
+            const info = res.data;
+            console.log(res);
+            this.setState({ info });
+          })
           
-    //   }
-
-    async componentDidMount() {
-      try {
-        const res = await fetch('http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json');
-        const movies = await res.json();
-        console.log(movies);
-        this.setState({
-          movies: movies.results,
-        });
-      } catch (e) {
-        console.log(e);
       }
-    }
+
+    // async componentDidMount() {
+    //   try {
+    //     const res = await fetch('http://trivago-magazine-work-sample-server.s3-website.eu-central-1.amazonaws.com/latest_posts.json');
+    //     const movies = await res.json();
+    //     console.log(movies);
+    //     this.setState({
+    //       movies: movies.results,
+    //     });
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // }
   
     render() {
         return (
@@ -51,7 +51,7 @@ class Home extends Component {
           </Carousel>
 <Container>
       <Row>
- {this.state.movies.map( c => 
+ {this.state.info.map( c => 
       <Col sm={4} key={c.id} >
           
           {/* <Link to={"/project/" + c.pk} > */}
@@ -64,11 +64,13 @@ class Home extends Component {
                   <ListGroup.Item>{c.excerpt}</ListGroup.Item>
                 </ListGroup>
                 <Card.Title style={{ float:"right", fontSize: "15px" }}>{c.date}</Card.Title><br></br>
-                <a href={ c.slug} >    <Button variant="info">See Details >> </Button></a> 
+                <a href={c.slug} >    <Button variant="info">See Details >> </Button></a> 
               </Card.Body>
          
         </Card>
       </Col>
+
+      
 
  )} 
         </Row>

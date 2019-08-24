@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from "unstated";
 import { Route,Switch} from 'react-router-dom'
-import {  Navbar, Nav, FormControl, Button, Form } from 'react-bootstrap';
+import {  Navbar, Nav } from 'react-bootstrap';
 import  Home  from './Container/Home'
 import Details from './Container/Details'
 import './App.css';
@@ -27,7 +27,7 @@ const BaseLayout = () => (
             <Switch>
 
              <Route path="/" exact component={Home} />
-              <Route  path='/:slug' component={Details} />
+             <Route path='/:slug' component={Details} />
               {/* <Route path="/LoginView" component={LoginView} /> */}
              
             </Switch>
